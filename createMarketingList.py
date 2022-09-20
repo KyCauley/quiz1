@@ -22,39 +22,43 @@
 
 
 import csv
+from tkinter import E
 
 # open the vendorlist file
-
+infile = open('VendorList.csv','r')
 
 # create a csv object from the file object
-
+csvfile = csv.reader(infile,delimiter=',')
 
 # create an output file
-
-
-
-
+write1 = open('marketinglistFINAL.csv','w')
+csvfile2 = csv.writer(write1,delimiter = ',')
+write1.write("Name,Email,Phone"+'\n')
+next(csvfile)
 
 # create an empty dictionary
-
-
+mydict = {}
+Bigdict= {}
 
 # iterate through the csv object
 
-
-
+for record in csvfile:
+    mydict['email'] = record[4]
+    mydict['phone'] = record[5]
+    Bigdict[record[1] + record[2]] = mydict
 
     # add the key-value pair to the dictionary
 
 
-
 # print the dictionary after the loop is finished
-
-
+print(Bigdict)
 
 # iternate through the dictionary and write to the output file
 
-
+for x in Bigdict[mydict]:
+    print(Bigdict[mydict][x])
 
 # close your output file
 
+write1.close
+infile.close
